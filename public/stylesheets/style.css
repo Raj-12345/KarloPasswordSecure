@@ -1,0 +1,97 @@
+
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+ul.feature {
+  list-style-type: circle;
+}
+div.sectioncontain
+{
+  margin-top: 100px;
+}
+body
+{
+  background-image: url("/images/pass.jpg");
+       background-size:100% 100%;
+       background-attachment: fixed;
+     background-repeat: no-repeat;
+     background-position: center; 
+    
+}
+div.information
+{
+
+  opacity: 0.9;
+    background-image: url("/images/password2.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+   
+}
+div.information:hover
+{
+
+  opacity: 0.6;
+
+}
+form
+{
+  border:1px solid white;
+}
+
+div .nav-link
+{
+  color:#f7ea2f;
+}
+
+li .dropdown-menu
+{
+  background-color:red;
+  
+}
+ span[class="userName"]
+{
+  
+   float:right;
+  color:#f7ea2f;
+}
+div .col-lg-4
+{
+  border:1px solid red;
+}
+
+div .card-header
+{
+  background-color:red;
+}
+div table tr
+{
+  background-color:white;
+}
+a[class="delete"]
+{
+  margin-left:20px;
+  color:red;
+  
+}
+a[class="edit"]
+{
+  color:green;
+  
+}
+
+td[class="action"]
+{
+text-align:center;
+}
+
+
+
+
+
+
+
+
