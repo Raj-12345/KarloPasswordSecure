@@ -3,6 +3,7 @@ var router = express.Router();
 var userController = require('../controller/user');
 var userModel = require('../model/usermodel');
 var passCategoryController = require('../controller/passwordcategory.js');
+var passwordCategoryModel = require("../model/passwordcategorymodel");
 const { body, validationResult } = require('express-validator');
 
 /* GET users listing. */
@@ -111,6 +112,34 @@ router.post('/addnewcategerious',userLoginOrNot,[body('categoryName').isLength({
   }
 
 });
+
+router.post('/addnewpassword',[body('userName').isLength({ min: 2 }).withMessage("Please Provide user Name"),
+body('password').isLength({ min: 8 }).withMessage("Please provide password greater than 8 characters") ], function (req, res, next) {
+
+  const errors = validationResult(req);
+  var data = req.body;
+  const userName=req.session.userName;
+  if (errors.isEmpty() == false) {
+
+    passwordCategoryModel.find({userName: userName},(error,result)=>{
+      if(error)
+      {
+        throw error;
+      }
+      
+   
+      res.render("addnewpassword", { errors: errors.mapped(),categories:result,sucess: null, session: req.session });
+ })
+
+  }
+  else {
+        passCategoryController.addPassword(req,res,userName,data)
+  }
+
+});
+
+
+
 
 router.get('/deletecategerious/:_id',userLoginOrNot,function (req, res, next) {
   const _id = req.params._id;

@@ -7,5 +7,5 @@ var mongoose=require('mongoose');
     date:{ type:Date,default:Date.now }
 
  })
- var passwordModel=mongoose.model('passwordCategorys',passwordScheme);
- module.exports =passwordModel;
+ var passwordCategoryModel=mongoose.model('passwordCategorys',passwordScheme);
+ module.exports =passwordCategoryModel;

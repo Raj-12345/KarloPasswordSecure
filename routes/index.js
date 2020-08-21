@@ -53,11 +53,24 @@ router.get('/addnewcategerious',checkAuthrization,function(req, res, next){
           res.render('addnewcategerious', {errors:null,sucess:null,session: req.session});
 
 })
+router.get('/addnewpassword',checkAuthrization,function(req, res, next){
+  var userName=req.session.userName;                          
+passCategoryController.showCategoriesToAdd(req,res,userName);
+
+
+})
 
 router.get('/viewallcategerious',checkAuthrization,function(req, res, next){
 
           var userName=req.session.userName;
                   passCategoryController.showCategories(req,res,userName);
+
+
+})
+router.get('/viewallpasswords',function(req, res, next){
+
+  var userName=req.session.userName;
+          passCategoryController.showPasswords(req,res,userName);
 
 
 })
