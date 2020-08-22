@@ -1,11 +1,11 @@
 var passwordCategoryModel = require('../model/passwordcategorymodel');
-var passwordModel=require("../model/passwordmodel");
+var passwordModel = require("../model/passwordmodel");
 
 module.exports = {
 
   addCategory: function (req, res, userName, categoryName) {
 
-    var passwordCategory =new passwordCategoryModel({
+    var passwordCategory = new passwordCategoryModel({
       userName: userName,
       categoryName: categoryName
     })
@@ -14,7 +14,7 @@ module.exports = {
         throw error;
       }
       else {
-        res.render("addnewcategerious", { errors: null, sucess: "Category Name Added Sucessfully", session: req.session });
+        res.redirect("/viewallcategerious");
       }
 
 
@@ -40,7 +40,7 @@ module.exports = {
       if (error) {
         throw error;
       }
-      
+
 
       res.redirect("/viewallcategerious");
     })
@@ -52,8 +52,8 @@ module.exports = {
       if (error) {
         throw error;
       }
-      
-      res.render("editcategerious", { category: result, session: req.session })
+
+      res.render("editcategerious", {errors:null,category: result, session: req.session })
     })
 
 
@@ -73,7 +73,7 @@ module.exports = {
       if (error) {
         throw error;
       }
-      
+
       res.render('addnewpassword', { errors: null, sucess: null, categories: result, session: req.session });
 
     })
@@ -81,14 +81,14 @@ module.exports = {
 
   },
   addPassword: function (req, res, userName, data) {
- 
-               
-   var password =new  passwordModel({
+
+
+    var password = new passwordModel({
       userName: userName,
       categoryName: data.categoryName,
-       categoryUserName:data.userName,
-      password:data.password,
-      url:data.url
+      categoryUserName: data.userName,
+      password: data.password,
+      url: data.url
 
     })
     password.save((error, result) => {
@@ -100,27 +100,58 @@ module.exports = {
           if (error) {
             throw error;
           }
-          res.render("addnewpassword", { errors: null,categories: result,sucess: "Password Added Sucessfully", session: req.session });
+          
+      res.redirect("/viewallpasswords");
         })
-                  
+
       }
     })
-             
 
 
 
-        },
-        showPasswords: (req, res, userName) => {
 
-          passwordModel.find({ userName: userName }, (error, result) => {
-            if (error) {
-              throw error;
-            }
-      
-            res.render('viewallpasswords', { passwords: result, session: req.session });
-          })
-      
-      
-        }
+  },
+  showPasswords: (req, res, userName) => {
+
+    passwordModel.find({ userName: userName }, (error, result) => {
+      if (error) {
+        throw error;
+      }
+
+      res.render('viewallpasswords', { passwords: result, session: req.session });
+    })
+
+
+  },
+  deletePassword: (req, res, _id) => {
+
+    passwordModel.findByIdAndDelete(_id, (error, result) => {
+      if (error) {
+        throw error;
+      }
+
+
+      res.redirect("/viewallpasswords");
+    })
+
+
+  },
+  editPassword: (req, res, _id) => {
+    passwordModel.findById(_id, (error, result) => {
+      if (error) {
+        throw error;
+      }
+
+      res.render("editpasswords", { errors:null,sucess:null, password: result, session: req.session })
+    })
+  },
+  updatePassword: (req, res, _id, data) => {
+    passwordModel.findByIdAndUpdate(_id, data, (error, result) => {
+      if (error) {
+        throw error;
+      }
+      res.redirect("/viewallpasswords");
+    })
+  }
 
 }
