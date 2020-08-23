@@ -1,0 +1,17 @@
+.pagination li:hover{
+    cursor: pointer;
+}
+div h2
+{
+    color: white;
+}
+nav ul[class="pagination"] li
+{
+    background-color:white;
+    padding:5px;
+    color:#563d7c;
+    border:1px solid  black;
+    border-radius: 5px;
+}
+
+ 

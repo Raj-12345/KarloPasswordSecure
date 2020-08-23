@@ -1,7 +1,7 @@
 const express=require('express');
 const mongoose =require('mongoose');
 
-var userSchema=mongoose.Schema({
+var userSchema=new mongoose.Schema({
      userName:{type:String,required:true},
      email:{type:String,require:true},
      password:{type:String,required:true},

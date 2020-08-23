@@ -9,60 +9,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet">
-    </head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/tablepage.css">
+</head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg     sticky-top">
-        <a class="navbar-brand text-white" href="/home">Password Management</a>
-
-        <button class="navbar-toggler  navbar-light bg-light" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Password Catagerious</a>
-                    <div class="dropdown-menu">
-
-                        <a class="dropdown-item" href="/addnewcategerious">Add New Catagerious</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/viewallcategerious">View All Catagerious</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Password Details</a>
-                    <div class="dropdown-menu">
-
-                        <a class="dropdown-item" href="/addnewpassword">Add New Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/viewallpasswords">View All Password</a>
-                    </div>
-                </li>
-
-            </ul>
-
-        </div>
-
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="btn btn-outline-success my-2 ml-auto border-white text-white" href="/users/logout">Log out</a>
-
-        </div>
-    </nav>
-    <span class="userName">Welcome user -: <%=session.userName%></span>
+    <%- include('header')%>
 
     <section>
 
@@ -73,10 +26,26 @@
                 </div>
 
                 <div class="col-lg-6  col-md-6 col-sm-8 col-xs-12">
-                    <table class="table">
+                    <h2>Select Number Of Rows</h2>
+                    <div class="form-group">
+                        <!--		Show Numbers Of Rows 		-->
+                        <select class="form-control" name="state" id="maxRows">
+                            <option value="5000">Show ALL Rows</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="70">70</option>
+                            <option value="100">100</option>
+                        </select>
+
+                    </div>
+
+                    <table class="table  table-class" id="table-id">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">No</th>
+
                                 <th scope="col">Category Name</th>
                                 <th scope="col " class="text-center">Action</th>
 
@@ -84,13 +53,13 @@
                         </thead>
                         <tbody>
                             <%
-                                          var no=0;
+                                        
                                           if(categories.length==0)
                                           {
                                               %>
-                                              <tr>
-                            <td colspan="3" style="text-align:center;color:red;"><b>!!!!!    No Category Found</b></td>
-                                              </tr>
+                            <tr>
+                                <td colspan="3" style="text-align:center;color:red;"><b>!!!!! No Category Found</b></td>
+                            </tr>
                             <%  
                                           }
                                 
@@ -99,23 +68,24 @@
                                             for(category  of categories)
                                             {
                                                          
-                                               no++;
+                                            
                                                 %>
                             <tr>
-                                <th scope="row"><%=no%></th>
+
                                 <td><%=category.categoryName%></td>
                                 <td class="action">
                                     <a href="users/editcategerious/<%=category._id%>" class="edit">
-                                    <span class="material-icons edit">
-                                        create
+                                        <span class="material-icons edit">
+                                            create
                                         </span>
-                                         edit    
+                                        edit
                                     </a>
-                                
-                                    <a href="users/deletecategerious/<%=category._id%>"  onclick="return confirm('Are you sure to delete this')"   class="delete">
+
+                                    <a href="users/deletecategerious/<%=category._id%>"
+                                        onclick="return confirm('Are you sure to delete this')" class="delete">
                                         <span class="material-icons delete">
                                             delete
-                                            </span>
+                                        </span>
                                         delete
                                     </a>
                                 </td>
@@ -130,7 +100,21 @@
 
                         </tbody>
                     </table>
+                    <!-- pagenation  code -->
+                    <div class='pagination-container'>
+                        <nav>
+                            <ul class="pagination">
 
+                                <li data-page="prev">
+                                    <span> Previous <span class="sr-only">(current)</span></span>
+                                </li>
+                                <!--	Here the JS Function Will Add the Rows -->
+                                <li data-page="next" id="prev">
+                                    <span> Next <span class="sr-only">(current)</span></span>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
 
                 </div>
 
@@ -143,9 +127,10 @@
 
 
 
+
+
+
     </section>
-
-
 
 
 
@@ -156,6 +141,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
+    <script src="/javascripts/pagenation.js"></script>
+
 </body>
 
 </html>

@@ -12,58 +12,7 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg     sticky-top">
-        <a class="navbar-brand text-white" href="/home">Password Management</a>
-
-        <button class="navbar-toggler  navbar-light bg-light" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Password Catagerious</a>
-                    <div class="dropdown-menu">
-
-                        <a class="dropdown-item" href="/addnewcategerious">Add New Catagerious</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/viewallcategerious">View All Catagerious</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Password Details</a>
-                    <div class="dropdown-menu">
-
-                        <a class="dropdown-item" href="/addnewpassword">Add New Password</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/viewallpasswords">View All Password</a>
-                    </div>
-                </li>
-
-            </ul>
-
-        </div>
-
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="btn btn-outline-success my-2 ml-auto border-white text-white" href="/users/logout">Log out</a>
-
-        </div>
-    </nav>
-
-
-    <span class="userName">Welcome user -: <%=session.userName%></span><br>
-
+    <%- include('header')%>
     <section>
 
         <div class="container-fluid mt-5">
@@ -83,7 +32,7 @@
                                     <label for="categoryName " class="font-weight-bolder">Catagery Name</label>
                                     <input type="text" class="form-control" id="categoryname" name="categoryName"
                                         placeholder="Enter Category Name" value="<%=category.categoryName%>" required>
-                                        
+
                                 </div>
                                 <%
                                 if(!(errors==null))
@@ -92,7 +41,7 @@
                                       {
                                     %>
                                 <p style="text-align:left;color:red">!!! <%= errors.categoryName.msg%> </p>
-                                       <% }
+                                <% }
                                 }
                                 %>
                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -113,7 +62,7 @@
 
     </section>
     <footer>
-        
+
     </footer>
 
 

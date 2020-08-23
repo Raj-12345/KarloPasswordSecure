@@ -1,7 +1,7 @@
 var express=require('express');
 var mongoose=require('mongoose');
 
- var passwordScheme=mongoose.Schema({
+ var passwordScheme=new mongoose.Schema({
    userName:{type:String,required:true},
     categoryName:{type:String,required:true},
     date:{ type:Date,default:Date.now }
