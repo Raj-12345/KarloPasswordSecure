@@ -4,7 +4,7 @@ var userController = require('../controller/user');
 var userModel = require('../model/usermodel');
 var passCategoryController = require('../controller/passwordcategory.js');
 var passwordCategoryModel = require("../model/passwordcategorymodel");
-var passwordModel=require("../model/passwordmodel");
+var passwordModel = require("../model/passwordmodel");
 const { body, validationResult } = require('express-validator');
 
 /* GET users listing. */
@@ -58,6 +58,7 @@ var userNameValidation = (req, res, next) => {
 
 var userLoginOrNot = (req, res, next) => {
   var loginToken = req.cookies.loginToken;
+  console.log(loginToken);
   if (loginToken) {
 
     next();
@@ -114,7 +115,7 @@ router.post('/addnewcategerious', userLoginOrNot, [body('categoryName').isLength
 
 });
 
-router.post('/addnewpassword', [body('userName').isLength({ min: 2 }).withMessage("Please Provide user Name"),
+router.post('/addnewpassword', userLoginOrNot, [body('userName').isLength({ min: 2 }).withMessage("Please Provide user Name"),
 body('password').isLength({ min: 8 }).withMessage("Please provide password greater than 8 characters")], function (req, res, next) {
 
   const errors = validationResult(req);
@@ -149,21 +150,21 @@ router.get("/editcategerious/:_id", userLoginOrNot, function (req, res, next) {
   const _id = req.params._id;
   passCategoryController.editCategory(req, res, _id);
 });
-router.post("/editcategerious/:_id", userLoginOrNot,[body('categoryName').isLength({ min: 2 }).withMessage("Please Provide Categery Name")], function (req, res, next) {
+router.post("/editcategerious/:_id", userLoginOrNot, [body('categoryName').isLength({ min: 2 }).withMessage("Please Provide Categery Name")], function (req, res, next) {
   const _id = req.params._id;
   var data = req.body;
   const errors = validationResult(req);
-  
+
   if (errors.isEmpty() == false) {
     console.log("sending errors");
-           passwordCategoryModel.findById(_id,(error, result) => {
+    passwordCategoryModel.findById(_id, (error, result) => {
       if (error) {
         throw error;
       }
-      res.render("editcategerious", { errors: errors.mapped(),category:result,sucess: null, session: req.session });
-    
+      res.render("editcategerious", { errors: errors.mapped(), category: result, sucess: null, session: req.session });
+
     })
-    
+
   }
   else {
     passCategoryController.updateCategory(req, res, _id, data);
@@ -176,41 +177,39 @@ router.post("/editcategerious/:_id", userLoginOrNot,[body('categoryName').isLeng
 
 
 
-router.get('/deletepasswords/:_id', function (req, res, next) {
+router.get('/deletepasswords/:_id', userLoginOrNot, function (req, res, next) {
 
   const _id = req.params._id;
   passCategoryController.deletePassword(req, res, _id);
 
 });
 
-router.get("/editpasswords/:_id", function (req, res, next) {
+router.get("/editpasswords/:_id", userLoginOrNot, function (req, res, next) {
   const _id = req.params._id;
   passCategoryController.editPassword(req, res, _id);
 });
 
 
-router.post("/editpasswords/:_id",
+router.post("/editpasswords/:_id", userLoginOrNot,
   [body('categoryUserName').isLength({ min: 2 }).withMessage("Please Provide user Name"),
   body('password').isLength({ min: 8 }).withMessage("Please provide password greater than 8 characters")], function (req, res, next) {
 
     const errors = validationResult(req);
     var data = req.body;
-    const _id=req.params._id;
+    const _id = req.params._id;
     if (errors.isEmpty() == false) {
 
-      passwordModel.findById(_id,(error, result) => {
+      passwordModel.findById(_id, (error, result) => {
         if (error) {
           throw error;
         }
-        res.render("editpasswords", { errors: errors.mapped(),password: result, sucess: null, session: req.session });
+        res.render("editpasswords", { errors: errors.mapped(), password: result, sucess: null, session: req.session });
       })
 
     }
     else {
-      passCategoryController.updatePassword(req, res,_id, data)
+      passCategoryController.updatePassword(req, res, _id, data)
     }
 
   });
-
-
 module.exports = router;

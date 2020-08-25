@@ -53,7 +53,7 @@ module.exports = {
         throw error;
       }
 
-      res.render("editcategerious", {errors:null,category: result, session: req.session })
+      res.render("editcategerious", { errors: null, category: result, session: req.session })
     })
 
 
@@ -100,8 +100,8 @@ module.exports = {
           if (error) {
             throw error;
           }
-          
-      res.redirect("/viewallpasswords");
+
+          res.redirect("/viewallpasswords");
         })
 
       }
@@ -142,7 +142,7 @@ module.exports = {
         throw error;
       }
 
-      res.render("editpasswords", { errors:null,sucess:null, password: result, session: req.session })
+      res.render("editpasswords", { errors: null, sucess: null, password: result, session: req.session })
     })
   },
   updatePassword: (req, res, _id, data) => {

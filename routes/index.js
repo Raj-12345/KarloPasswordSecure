@@ -1,78 +1,36 @@
 var express = require('express');
 var router = express.Router();
-var jwt=require('jsonwebtoken');
-var passCategoryController = require('../controller/passwordcategory');
+var jwt = require('jsonwebtoken');
+
 /* GET home page. */
 // middleware for authrization
 
-function checkAuthrization(req,res,next){
-  var loginToken=req.cookies.loginToken;
+function checkAuthrization(req, res, next) {
+  var loginToken = req.cookies.loginToken;
 
   try {
-             
-      jwt.verify(loginToken,"1256");
-      next();
+
+    jwt.verify(loginToken, "1256");
+    next();
   } catch (error) {
-         res.redirect('/');
+    res.redirect('/');
   }
 
 }
 
 //midddleware for userLoginOrNot
-var userLoginOrNot =(req,res, next)=>{
-  var loginToken=req.cookies.loginToken;
-   if(loginToken)
-   {
-          res.redirect("/home");
-   }
-   else
-   {
-                        next();
-   }
+var userLoginOrNot = (req, res, next) => {
+  var loginToken = req.cookies.loginToken;
+  if (loginToken) {
+    res.redirect("/home");
+  }
+  else {
+    next();
+  }
 
 
 }
-
-
-
-router.get('/', userLoginOrNot,function(req, res, next) {
-  res.render('index', { title: 'Welcome in Password Management',signup:false ,error:false});
+router.get('/', userLoginOrNot, function (req, res, next) {
+  res.render('index', { title: 'Welcome in Password Management', signup: false, error: false });
 });
-
- router.get('/home', checkAuthrization,function(req, res, next) {
-  res.render('home', { title: 'Dashboard', session: req.session });
-
- });
-
-
-router.get('/signup', userLoginOrNot,function(req, res, next) {
-  res.render('signup', { title:'Sign Up', user_name_error: false,user_email_error: false,message: ' ' });
-});
-
-router.get('/addnewcategerious',checkAuthrization,function(req, res, next){
-          res.render('addnewcategerious', {errors:null,sucess:null,session: req.session});
-
-})
-router.get('/addnewpassword',checkAuthrization,function(req, res, next){
-  var userName=req.session.userName;                          
-passCategoryController.showCategoriesToAdd(req,res,userName);
-
-
-})
-
-router.get('/viewallcategerious',checkAuthrization,function(req, res, next){
-
-          var userName=req.session.userName;
-                  passCategoryController.showCategories(req,res,userName);
-
-
-})
-router.get('/viewallpasswords',function(req, res, next){
-
-  var userName=req.session.userName;
-          passCategoryController.showPasswords(req,res,userName);
-
-
-})
-
 module.exports = router;

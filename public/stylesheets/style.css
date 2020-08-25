@@ -58,15 +58,8 @@ li .dropdown-menu
    float:right;
   color:#f7ea2f;
 }
-div .col-lg-4
-{
-  border:1px solid red;
-}
 
-div .card-header
-{
-  background-color:red;
-}
+
 div table tr
 {
   background-color:white;
