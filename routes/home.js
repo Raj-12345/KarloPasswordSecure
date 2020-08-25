@@ -21,20 +21,23 @@ function checkAuthrization(req, res, next) {
 }
 
 router.get('/', checkAuthrization, function (req, res, next) {
-passwordCategoryModel.estimatedDocumentCount((error, result) => {
+passwordCategoryModel.countDocuments({userName:{$eq:req.session.userName}},(error, result) => {
   if(error)
   {
 throw error;
   }
-
+                
              req.session.passwordsCategoryCount= result;        
-             passwordModel.estimatedDocumentCount((error, result) => {
+             passwordModel.countDocuments({userName:{$eq:req.session.userName}},(error, result) => {
               if(error)
               {
           throw error;
               }
           
-                         req.session.passwordsCount= result;           
+                         req.session.passwordsCount= result;          
+                         console.log(req.session.userName); 
+                         console.log(req.session.passwordsCategoryCount);
+                         console.log(req.session.passwordsCount);
                   res.render('home', { title: 'Dashboard', session: req.session });
              })
              
