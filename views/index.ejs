@@ -27,11 +27,14 @@
 
   <section>
     <marquee style="color:red">Manage your Password With SECURITY!!!</marquee>
-    <div class="container  sectioncontain">
-
+    <div class="container-fluid sectioncontain">
       <div class="row">
+        <div class=" col-xl-1  col-lg-2 col-md-1 col-sm-1">
 
-        <div class="col-lg-6  col-md-6 col-sm-12  col-12  bg-dark text-white information ">
+        </div>
+     
+
+        <div class=" col-xl-4 col-lg-8  col-md-10  col-sm-10  col-12  bg-dark text-white information ">
           <h1><%= title %></h1>
           <ul class="feature mt-5">
             <li>Manage your username and password</li>
@@ -41,9 +44,14 @@
           </ul>
         </div>
 
+        <div class="col-xl-1 col-lg-2 col-md-1    col-sm-1  ">
+        </div>
 
+ 
+        <div class="col-xl-1 col-lg-2 col-md-1 col-sm-1 ">
+        </div>
 
-        <div class="col-lg-6  col-md-6 col-sm-12  col-12  text-white rounded">
+        <div class="col-xl-4 col-lg-8 col-md-10 col-sm-10  col-12  text-white rounded">
 
           <form class="p-3" method="POST" action="/users/login">
             <div class="form-group ">
@@ -66,10 +74,14 @@
 
         </div>
 
+        <div class="col-xl-1 col-lg-2 col-md-1 col-sm-1">
+
+
+        </div>
 
       </div>
-
     </div>
+
     <div class="container">
 
       <div class="row">
@@ -88,13 +100,13 @@
           <%
            }
            %>
-           <% if(error==true)
+          <% if(error==true)
            {
                 %>
-           <div class="alert alert-success"  style="color:red"   role="alert">
-             <%=message%>
-           </div>
-           <%
+          <div class="alert alert-success" style="color:red" role="alert">
+            <%=message%>
+          </div>
+          <%
             }
             %>
 
@@ -119,10 +131,10 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>  
-    <script src="/javascripts/home.js">
+    crossorigin="anonymous"></script>
+  <script src="/javascripts/home.js">
 
-    </script>
+  </script>
 </body>
 
 </html>
