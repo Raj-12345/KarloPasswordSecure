@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-
+var loginRouter= require('./routes/login')
 var signUpRouter=require('./routes/signup');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/home',homeRouter);
 app.use('/signup',signUpRouter);
+app.use('/login',loginRouter);
 app.use('/users', usersRouter);
 app.use('/addnewcategerious',addNewCategerious);
 app.use('/addnewpassword',addNewPassword);

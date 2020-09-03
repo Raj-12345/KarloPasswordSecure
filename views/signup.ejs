@@ -9,30 +9,23 @@
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg     sticky-top">
-        <a class="navbar-brand text-white" href="/">Karlo Password Secure</a>
-        <button class="navbar-toggler  navbar-light bg-light" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <a class="btn btn-outline-success my-2 ml-auto border-white text-white" href="/">Login</a>
-
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light  nav justify-content-between">
+        <a class="navbar-brand" style="color:red" href="/">
+            <img src="/images/logo4.png" width="110" height="110" class="d-inline-block align-top" alt=""
+                loading="lazy">
+        </a>
+        <a type="button" href="/login"
+            class="btn btn-outline-info text-primary text-capitalize font-weight-bold">login</a>
     </nav>
 
     <section>
         <div class="container  sectioncontain   text-white ">
 
             <div class="row">
-                <div class="col-lg-4 col-md-3  col-sm-2 ">
+                <div class="col-xl-3 col-lg-3 col-md-3  col-sm-2  col-1">
 
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-8 col-12">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-10">
                     <form class=" p-4 mx-auto" method="POST" action="/users/signup">
                         <div class="form-group ">
                             <label for="username">User Name</label>
@@ -46,12 +39,12 @@
                             <%
                              }
                              %>
-        
+
                         </div>
                         <div class="form-group ">
                             <label for="exampleInputEmail1">Email</label>
                             <input type="email" class="form-control" name="email" id="exampleInputEmail1" required>
-        
+
                         </div>
                         <% if(user_email_error==true)
                         {
@@ -64,15 +57,16 @@
                          %>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" name="confirmpassword" id="exampleInputPassword1"
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1"
                                 required>
                         </div>
-        
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirmpassword"
+                                id="exampleInputPassword1" required>
+                        </div>
+
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
@@ -82,7 +76,7 @@
 
                 </div>
 
-                <div class="col-lg-4 col-md-3 col-sm-2 ">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-2 col-1">
 
                 </div>
 
@@ -93,11 +87,6 @@
 
         <marquee style="color:red">Sign Up For Free !!!!</marquee>
     </section>
-
-
-
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -1,7 +1,11 @@
 
-
+html
+{
+  height: 100%;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height:100%;
 }
 
 
@@ -10,7 +14,7 @@ ul.feature {
 }
 div.sectioncontain
 {
-  margin-top: 100px;
+  margin-top: 30px;
 }
 body
 {
@@ -80,11 +84,21 @@ td[class="action"]
 {
 text-align:center;
 }
+header h1
+{
+  color:#e4c029;
+}
 
+div img
+{ 
+   
+  border-radius: 80px 10px 80px 10px;
+}
 
-
-
-
+footer
+{
+  margin-top:280px;
+}
 
 
 
