@@ -21,7 +21,7 @@ module.exports = {
 
             }
             console.log(result);
-            res.render('index', { title: 'Welcome in Password Management', signup: true, error: false, message: "Signup Sucessfully !!! Login Here" })
+            res.render('login', { title: 'Welcome in Password Management', signup: true, error: false, message: "Signup Sucessfully !!! Login Here" })
 
         })
     },
@@ -37,7 +37,7 @@ module.exports = {
             
             if (result == null) {
               
-                res.render('index', { title: 'Welcome in Password Management', signup: false, error: true, message: "userName or password Invalid!!!" });
+                res.render('login', { title: 'Welcome in Password Management', signup: false, error: true, message: "userName or password Invalid!!!" });
             }
             else {
                 var password = bcryptjs.compareSync(user.password,result.password);
@@ -53,7 +53,7 @@ module.exports = {
                     }
                     else
                     {
-                        res.render('index', { title: 'Welcome in Password Management', signup: false, error: true, message: "userName or password Invalid!!!" });
+                        res.render('login', { title: 'Welcome in Password Management', signup: false, error: true, message: "userName or password Invalid!!!" });
 
                     }
             }
