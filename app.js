@@ -13,6 +13,7 @@ var addNewCategerious=require('./routes/addnewcategerious');
 var addNewPassword=require('./routes/addnewpassword');
 var viewAllCategerious=require('./routes/viewallcategerious');
 var viewAllPasswords=require('./routes/viewallpasswords');
+var forgotPassword=require('./routes/forgotpassword.js');
 require('./dbconnection/connection');
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/addnewcategerious',addNewCategerious);
 app.use('/addnewpassword',addNewPassword);
 app.use('/viewallcategerious',viewAllCategerious);
 app.use('/viewallpasswords',viewAllPasswords);
+app.use('/forgot',forgotPassword);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

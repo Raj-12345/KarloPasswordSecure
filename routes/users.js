@@ -212,4 +212,26 @@ router.post("/editpasswords/:_id", userLoginOrNot,
     }
 
   });
+  router.post("/updateforgotpasswords/:_id", 
+  [body('password').isLength({ min: 8 }).withMessage("Please provide password greater than 8 characters")], function (req, res, next) {
+
+    const errors = validationResult(req);
+    var data = req.body;
+    const _id = req.params._id;
+    if (errors.isEmpty() == false) {
+ console.log(errors.isEmpty() );
+      userModel.findById(_id, (error, result) => {
+        if (error) {
+          throw error;
+        }
+        res.render("resetpassword", { errors: errors.mapped(),user:result});
+      })
+
+    }
+    else {
+  
+      userController.updateforgotPassword(req, res, _id, data);
+    }
+
+  });
 module.exports = router;

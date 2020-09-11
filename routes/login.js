@@ -16,6 +16,6 @@ var userLoginOrNot = (req, res, next) => {
 }
 
 router.get('/', userLoginOrNot, function (req, res, next) {
-  res.render('login', { title: 'Login', error:false,signup: false, message: ' ' });
+  res.render('login', { title: 'Login', error:false,signup: false,resetpassword:false,message: ' ' });
 });
 module.exports = router;
