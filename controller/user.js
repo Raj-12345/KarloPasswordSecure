@@ -28,19 +28,21 @@ module.exports = {
     },
     loginUser: (req, res, user) => {
 
-        console.log(user);
+console.log(JSON.stringify(user));        
 
-        userModel.findOne({ userName: user.userName }, (error, result) => {
+        userModel.findOne({ email: user.email }, (error, result) => {
+            console.log("the user is "+result);
             if (error) {
                 throw error;
 
             }
 
             if (result == null) {
-
+                console.log(result);
                 res.render('login', { title: 'Welcome in Password Management', signup: false, error: true,resetpassword:false,message: "userName or password Invalid!!!" });
             }
             else {
+                console.log("this is result"+result);
                 var password = bcryptjs.compareSync(user.password, result.password);
                 if (password) {
                     req.session.userName = result.userName;

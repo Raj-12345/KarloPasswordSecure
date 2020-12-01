@@ -13,7 +13,7 @@ var transporter =nodeMailer.createTransport({
    service:"gmail",
    auth:{ 
      user:"raj.malviya00011.rm@gmail.com",
-     pass:"Modiji12345@"
+     pass:"Khandwa12345@"
    }
 })
 //send email function 
